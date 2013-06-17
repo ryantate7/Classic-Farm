@@ -1,9 +1,9 @@
 <?php require_once("includes/connection.php");?>
 <?php require_once("includes/functions.php");?>
-<?php find_selected_page()//figure out what has been chosen;?>
+<?php find_selected_page();//figure out what has been chosen?>
 <?php include("includes/header.php")?>
 <table id="structure">
-  <tr>
+	<tr>
 		<td id="navigation">		
 		<?php echo public_navigation($sel_subject, $sel_page); ?>
 		</td>
