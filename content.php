@@ -1,12 +1,12 @@
-<?php require_once("includes/session.php");?>
-<?php require_once("includes/connection.php")?>
-<?php require_once("includes/functions.php")?>
-<?php  confirm_logged_in();//will redirect them to the log-in screen if they are not logged in?>
-<?php find_selected_page();//figure out what has been chosen?>
-<?php include("includes/header.php")?>
+<?php require_once("includes/session.php"); ?>
+<?php require_once("includes/connection.php") ?>
+<?php require_once("includes/functions.php") ?>
+<?php  confirm_logged_in();//will redirect them to the log-in screen if they are not logged in ?>
+<?php find_selected_page();//figure out what has been chosen ?>
+<?php include("includes/header.php") ?>
 
 <table id="structure">
-  <tr>
+	<tr>
 		<td id="navigation">
 				
 			<?php echo navigation($sel_subject, $sel_page); ?>
@@ -41,3 +41,4 @@
 	</tr>
 </table>
 <?php require("includes/footer.php")?>
+
