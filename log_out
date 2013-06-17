@@ -1,0 +1,19 @@
+<?php require_once("includes/functions.php"); ?>
+<?php
+  //1-find the Session
+	session_start();
+	
+	//2-unset all session variables
+	$_SESSION = array();
+	
+	//3-destroy the session cookie
+	if(isset($_COOKIE[session_name()]))
+	{
+		setcookie(session_name(),'',time()-42000, '/');
+	}
+	
+	//4-destroy the Session
+		session_destroy();
+		
+		redirect_to("log_in.php?logout=1");
+	?>
