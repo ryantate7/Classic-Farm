@@ -5,14 +5,13 @@
 <?php find_selected_page();//figure out what has been chosen ?>
 <?php include("includes/header.php") ?>
 
-<table id="structure">
-	<tr>
-		<td id="navigation">
+<div id="structure">
+		<div id="navigation">
 				
 			<?php echo navigation($sel_subject, $sel_page); ?>
 				
-		</td>
-		<td id="page">
+		</div>
+		<div id="page">
 			<?php if(!is_null($sel_subject))//subject selected
 			{
 				echo "<h2>" . $sel_subject["menu_name"] . "</h2>";
@@ -29,7 +28,7 @@
 				}
 				echo "</ul>";
 				echo "<br><a href=\"edit_page.php?page=" . urlencode($sel_page['id']) . "\">Edit Page</a><br><br>";
-				echo "<a href=\"new_item.php?page=" . urlencode($sel_page['id']) . "\">+Add New Item to Page</a>";
+				echo "<a href=\"new_item.php?page=" . urlencode($sel_page['id']) . "\">Add New Item to Page</a>";
 			}
 			
 			else//nothing selected
@@ -37,8 +36,7 @@
 				echo "<h2>Select a subject or a page to edit</h2>"; 
 			}
 			?>
-		</td>
-	</tr>
-</table>
+		</div>
+</div>
 <?php require("includes/footer.php")?>
 
