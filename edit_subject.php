@@ -3,7 +3,7 @@
 <?php require_once("includes/functions.php");?>
 <?php  confirm_logged_in();//will redirect them to the log-in screen if they are not logged in?>
 <?php
-  if(intval($_GET['subj'])==0)
+	if(intval($_GET['subj'])==0)
 	{
 		redirect_to("content.php");
 	}
@@ -71,66 +71,32 @@
 <?php find_selected_page();?>
 <?php include("includes/header.php")?>
 
-<table id="structure">
-	<tr>
-		<td id="navigation">
-			<?php echo navigation($sel_subject, $sel_page); ?>
-		</td>
-		<td id="page">
+<div id="structure">
+	<div id="navigation">
+		<?php echo navigation($sel_subject, $sel_page); ?>
+	</div>
+		
+		<div id="page">
 			<h2>Edit Subject:<?php echo $sel_subject['menu_name'];?></h2>
 			<?php 
-			if(!empty($message))
-			{
-				echo "<p class=\"message\">" . $message . "</p>";
-			}	
+				if(!empty($message))
+				{
+					echo "<p class=\"message\">" . $message . "</p>";
+				}	
 			?>
 			<?php
-			//output the list of the fields that had errors
-			if(!empty($errors))
-			{
-				display_errors($errors);
-			}			
+				//output the list of the fields that had errors
+				if(!empty($errors))
+				{
+					display_errors($errors);
+				}			
 			?>
 			<form action="edit_subject.php?subj=<?php echo urlencode($sel_subject['id']);?>" method="post">
-				<p>Subject Name: <input type="text" name="menu_name" value="<?php echo $sel_subject['menu_name'];?>" id="menu_name" /></p>
-					<p>Position:
-						<select name="position">
-							<?php
-								$subject_set = get_all_subjects();
-								$subject_count = mysql_num_rows($subject_set);
-								for($count=1; $count <= $subject_count+1; $count++)
-								{
-									echo "<option value=\"{$count}\"";
-									if($sel_subject['position'] == $count)
-									{
-										echo " selected";
-									}
-									echo ">{$count}</option>";
-								
-								}
-							?>		
-						</select>
-					</p>
-					<p>Visible:
-					<input type="radio" name="visible" value="0"<?php
-					if($sel_subject['visible']==0)
-					{
-						echo " checked";
-					}
-					?>/>No
-														
-					<input type="radio" name="visible" value="1"<?php 
-					if($sel_subject['visible']==1)
-					{
-						echo " checked";
-					}
-					?>/>Yes
-							
-					</p>
-					<input type="submit" name="submit" value="Update Subject" />
-					&nbsp;&nbsp;
+			<?php include("subject_form.php");?>	
+			<div class="actions"><input type="submit" name="submit" value="Update Subject" /></div>
+			&nbsp;&nbsp;
 			</form>
-		<a href="delete_subject.php?subj=<?php echo urlencode($sel_subject['id']);?>" onclick="return confirm('Are you sure?');">-Delete this Subject</a>
+		<a href="delete_subject.php?subj=<?php echo urlencode($sel_subject['id']);?>" onclick="return confirm('Are you sure?');">Delete this Subject</a>
 		<br>
 		<a href="content.php">Cancel</a>
 		<br><br><br><br>
@@ -147,8 +113,7 @@
 			echo "</ul>";
 		?>
 		</p>
-		<a href="new_page.php?subj=<?php echo urlencode($sel_subject['id']); ?>">+ Add a new page to this Subject</a>
-		</td>
-	</tr>
-</table>
+		<a href="new_page.php?subj=<?php echo urlencode($sel_subject['id']); ?>">Add a new page to this Subject</a>
+		</div>
+</div>
 <?php require("includes/footer.php")?>
