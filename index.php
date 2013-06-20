@@ -2,12 +2,12 @@
 <?php require_once("includes/functions.php");?>
 <?php find_selected_page();//figure out what has been chosen?>
 <?php include("includes/header.php")?>
-<table id="structure">
-	<tr>
-		<td id="navigation">		
+<div id="structure">
+	<div id="navigation">		
 		<?php echo public_navigation($sel_subject, $sel_page); ?>
-		</td>
-		<td id="page">
+	</div>
+		
+		<div id="page">
 			<?php if(!is_null($sel_subject))//subject selected
 			{
 				echo "<h2>" . $sel_subject["menu_name"] . "</h2>";
@@ -42,14 +42,14 @@
 				echo "<td><image src=\"images/ClassicFarmLogo.jpg\"align=\"left\"></td>";//move image over if nothing selected
 			}
 			?>
-		</td>		
+		</div>		
 		<?php
 		if(!is_null($sel_subject) || !is_null($sel_page))
 		{
 			echo "<td><image src=\"images/ClassicFarmLogo.jpg\" align=\"right\"></td>";//move image out of the way if something gets selected
 		}
 		?>
-	</tr>
 	
-</table>
+	
+</div>
 <?php require("includes/footer.php")?>
