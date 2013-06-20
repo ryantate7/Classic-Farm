@@ -1,8 +1,7 @@
 <?php //this page is included by new_item.php and edit_item.php?>
 <?php if (!isset($new_item)){$new_item = false;}?>
-
-  <p>Item Name: <input type="text" name="menu_name" value="<?php echo $sel_item['menu_name'];?>" id="menu_name" /></p>
-	<p>Position:<select name="position">
+	<div><label for="item_name">Item Name:</label><input name="menu_name" type="text" id="menu_name" size="30" value="<?php echo $sel_item['menu_name'];?>" /></div>
+	<div><label for="position">Position:</label><select name="position" id="position">
 		<?php
 		if(!$new_item)//edit item, only show positions already entered
 		{
@@ -25,9 +24,9 @@
 				echo ">{$count}</option>";
 			}
 		?>		
-		</select></p>
-	<p>Visible:
-		<input type="radio" name="visible" value="0"
+		</select></div>
+	<div><label for="visible">Visible:</label>
+		<input type="radio" name="visible" id="visible" value="0"
 		<?php
 		if($sel_item['visible']==0)
 		{
@@ -41,8 +40,8 @@
 			echo " checked";
 		}
 		?>/>Yes
-	</p>
-	<p>Description:<br>
-	<textarea name="description" rows="2" cols="80"><?php echo $sel_item['description'];?></textarea></p><br>
-	<p>Price: <input type="text" name="price" value="<?php echo $sel_item['price'];?>" id="price" /></p><br>
-	<p>Image: <input type="text" name="image" value="<?php echo $sel_item['image'];?>" id="image" /></p>
+	</div>
+	<div><label for="description">Description:</label>
+	<textarea name="description" id="description" rows="2" cols="80"><?php echo $sel_item['description'];?></textarea></div>
+	<div><label for="price">Price:</label><input type="text" name="price" value="<?php echo $sel_item['price'];?>" id="price" /></div>
+	<div><label for="image">Image:</label><input type="text" name="image" value="<?php echo $sel_item['image'];?>" id="image" /></div>
