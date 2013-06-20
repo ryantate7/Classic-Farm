@@ -3,7 +3,7 @@
 <?php require_once("includes/functions.php")?>
 <?php  confirm_logged_in();//will redirect them to the log-in screen if they are not logged in?>
 <?php
-  if(intval($_GET['item'])==0)
+	if(intval($_GET['item'])==0)
 	{
 		redirect_to("content.php");
 	}
@@ -73,13 +73,13 @@
 <?php find_selected_page();?>
 <?php include("includes/header.php")?>
 
-<table id="structure">
-	<tr>
-		<td id="navigation">
+<div id="structure">
+		<div id="navigation">
 			<?php echo navigation($sel_subject, $sel_page); ?>
-		</td>
-		<td id="page">
-			<h2>Edit Item:<?php echo $sel_item['menu_name'];?></h2>
+		</div>
+		
+		<div id="page">
+			<h2>Edit Item: <?php echo $sel_item['menu_name'];?></h2>
 			<?php 
 			if(!empty($message))
 			{
@@ -95,13 +95,11 @@
 			?>
 					<form action="edit_item.php?item=<?php echo urlencode($sel_item['id']);?>" method="post">
 					<?php include "item_form.php" ?>
-					<input type="submit" name="submit" value="Update Item" />
-					&nbsp;&nbsp;
-					<a href="delete_item.php?item=<?php echo urlencode($sel_item['id']);?>" onclick="return confirm('Are you sure?');">Delete Item</a>
+					<div class="actions"><input type="submit" name="submit" value="Update Item" /></div>					
 			</form>
+			<a href="delete_item.php?item=<?php echo urlencode($sel_item['id']);?>" onclick="return confirm('Are you sure?');">Delete Item</a>
 			<br>
 			<a href="content.php">Cancel</a>
-		</td>
-	</tr>
-</table>
+		</div>
+</div>
 <?php require("includes/footer.php")?>
