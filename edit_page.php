@@ -3,7 +3,7 @@
 <?php require_once("includes/functions.php");?>
 <?php  confirm_logged_in();//will redirect them to the log-in screen if they are not logged in?>
 <?php
-  if(intval($_GET['page'])==0)
+	if(intval($_GET['page'])==0)
 	{
 		redirect_to("content.php");
 	}
@@ -69,12 +69,11 @@
 <?php find_selected_page();?>
 <?php include("includes/header.php")?>
 
-<table id="structure">
-	<tr>
-		<td id="navigation">
+<div id="structure">
+		<div id="navigation">
 			<?php echo navigation($sel_subject, $sel_page); ?>
-		</td>
-		<td id="page">
+		</div>
+		<div id="page">
 			<h2>Edit Page:<?php echo $sel_page['menu_name'];?></h2>
 			<?php 
 			if(!empty($message))
@@ -91,28 +90,29 @@
 			?>
 					<form action="edit_page.php?page=<?php echo urlencode($sel_page['id']);?>" method="post">
 					<?php include "page_form.php" ?>
-					<input type="submit" name="submit" value="Update Page" />
-					&nbsp;&nbsp;
-					<a href="delete_page.php?page=<?php echo urlencode($sel_page['id']);?>" onclick="return confirm('Are you sure?');">Delete Page</a>
+					<div class="actions"><input type="submit" name="submit" value="Update Page" /></div>
+					
 			</form>
 			<br>
+			<a href="delete_page.php?page=<?php echo urlencode($sel_page['id']);?>" onclick="return confirm('Are you sure?');">Delete Page</a>
+			<br>
 			<a href="content.php">Cancel</a>
-			<td>
-			<p>Items within this page:<br>
+			<div id="page_items">
+			<!--<p>Items within this page:</p><br>-->
 			<?php
 				$item_set = get_items_for_page($_GET['page']);
 				$item_count = mysql_num_rows($item_set);
+				echo "<p>Items within this page:<br>";
 				echo "<ul class=\"page\">";
 				while($item = mysql_fetch_array($item_set))
 				{
 					echo "<li><a class='page' href=\"edit_item.php?item=" . urlencode($item['id']) . "\">{$item['menu_name']}</a></li><br>";
 				}
 				echo "</ul>";
+				echo "</p>";
 			?>
-			</p>
-			</td>
-		</td>
-
-	</tr>
-</table>
+			
+			</div>
+		</div>
+</div>
 <?php require("includes/footer.php")?>
