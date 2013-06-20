@@ -2,7 +2,7 @@
 <?php require_once("includes/connection.php");?>
 <?php require_once("includes/functions.php");?>
 <?php
-  if(logged_in())//redirect them to staff if they are already logged in
+	if(logged_in())//redirect them to staff if they are already logged in
 	{
 		redirect_to("staff.php");	
 	}
@@ -73,18 +73,18 @@
 	}
 ?>
 <?php require("includes/header.php"); ?>
-<table id="structure">
-	<tr>
-		<td id="navigation">		
+<div id="structure">
+		<div id="navigation">		
 		<a href="staff.php">Return to Menu</a><br />
 		<br />
-		</td>
-		<td id="page">
+		</div>
+		<div id="page">
 		<h2>Please Log In</h2>
-		<?php 	if(!empty($message))//display message if it is not blank
-				{
-					echo "<p class=\"message\">" . $message . "</p>";
-				}
+		<?php 	
+			if(!empty($message))//display message if it is not blank
+			{
+				echo "<p class=\"message\">" . $message . "</p>";
+			}
 		?>
 		<?php 	if(!empty($errors))
 				{
@@ -92,21 +92,16 @@
 				}
 		?>
 			<form action="log_in.php" method="post">
-			<table>
-				<tr>
-					<td>Username:</td>
-					<td><input type="text" name="username" maxlength="30" value="<?php echo htmlentities($username);?>" /></td>
-				</tr>
-				<tr>
-					<td>Password:</td>
-					<td><input type="password" name="password" maxlength="30" value="<?php echo htmlentities($password);?>" /></td>
-				</tr>
-				<tr>
-					<td colspan="2"><input type="submit" name="submit" value="Create User"/></td>
-				</tr>
-			</table>
+			
+					<div><label for="username">Username:</label>
+					<input type="text" name="username" maxlength="30" value="<?php echo htmlentities($username);?>" /></div>
+				
+					<div><label for="password">Password:</label>
+					<input type="password" name="password" maxlength="30" value="<?php echo htmlentities($password);?>" /></div>
+				
+					<div><input type="submit" name="submit" value="Log In"/></div>
+				
 			</form>	
-		</td>
-	</tr>
-</table>
+		</div>
+</div>
 <?php require("includes/footer.php"); ?>
